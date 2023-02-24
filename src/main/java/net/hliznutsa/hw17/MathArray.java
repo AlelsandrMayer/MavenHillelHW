@@ -1,6 +1,5 @@
 package net.hliznutsa.hw17;
 
-
 public class MathArray {
 
     private final int[] array;
