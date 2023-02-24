@@ -86,28 +86,59 @@ class PointTest {
         Assertions.assertEquals(0, result);
     }
 
-
-    @Test
-    void testEqualsFalse() {
-        Point point1 = new Point(11, 9);
-        Point point2 = new Point(7, 6);
-        boolean result = point1.equals(point2);
-        Assertions.assertFalse(result);
-    }
-
     @Test
     void testEqualsTrue() {
         Point point1 = new Point(5, 7);
         Point point2 = new Point(5, 7);
-        boolean result = point1.equals(point2);
-        Assertions.assertTrue(result);
+        Point point3 = new Point(5, 7);
+
+        boolean resultReflexivity = point1.equals(point1);
+
+        boolean resultSymmetry1 = point1.equals(point2);
+        boolean resultSymmetry2 = point2.equals(point1);
+
+        boolean resultTransitivity1 = point1.equals(point2);
+        boolean resultTransitivity2 = point2.equals(point3);
+        boolean resultTransitivity3 = point1.equals(point3);
+
+        boolean resultConsistency1 = point3.equals(point1);
+        boolean resultConsistency2 = point3.equals(point1);
+
+        Assertions.assertTrue(resultReflexivity);
+        Assertions.assertTrue(resultSymmetry1);
+        Assertions.assertTrue(resultSymmetry2);
+        Assertions.assertTrue(resultTransitivity1);
+        Assertions.assertTrue(resultTransitivity2);
+        Assertions.assertTrue(resultTransitivity3);
+        Assertions.assertTrue(resultConsistency1);
+        Assertions.assertTrue(resultConsistency2);
     }
 
     @Test
-    void testEqualsTrueNull() {
-        Point point1 = new Point(5, 7);
-        boolean result = point1.equals(null);
-        Assertions.assertFalse(result);
+    void testEqualsFalse() {
+        Point point1 = new Point(5, 5);
+        Point point2 = new Point(5, 8);
+        Point point3 = new Point(7, 7);
+
+        boolean resultSymmetry1 = point1.equals(point2);
+        boolean resultSymmetry2 = point2.equals(point1);
+
+        boolean resultTransitivity1 = point1.equals(point2);
+        boolean resultTransitivity2 = point2.equals(point3);
+        boolean resultTransitivity3 = point1.equals(point3);
+
+        boolean resultConsistency1 = point3.equals(point1);
+        boolean resultConsistency2 = point3.equals(point1);
+        boolean resultNull = point1.equals(null);
+
+        Assertions.assertFalse(resultSymmetry1);
+        Assertions.assertFalse(resultSymmetry2);
+        Assertions.assertFalse(resultTransitivity1);
+        Assertions.assertFalse(resultTransitivity2);
+        Assertions.assertFalse(resultTransitivity3);
+        Assertions.assertFalse(resultConsistency1);
+        Assertions.assertFalse(resultConsistency2);
+        Assertions.assertFalse(resultNull);
     }
 
     @Test
