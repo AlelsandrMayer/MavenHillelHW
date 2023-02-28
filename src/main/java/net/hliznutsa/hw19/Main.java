@@ -1,5 +1,7 @@
 package net.hliznutsa.hw19;
 
+import static net.hliznutsa.hw19.MusicStyles.print;
+
 public class Main {
     public static void main(String[] args) {
         MusicStyles[] musicStyles = new MusicStyles[3];
@@ -9,11 +11,7 @@ public class Main {
         musicStyles[2] = new ClassicMusic("Классики");
 
         print(musicStyles);
+        print(null);
     }
 
-    public static void print(MusicStyles[] music) {
-        for (MusicStyles musicStyle : music) {
-            musicStyle.playMusic();
-        }
-    }
 }

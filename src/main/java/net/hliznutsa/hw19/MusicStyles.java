@@ -8,4 +8,14 @@ public abstract class MusicStyles {
     }
 
     protected abstract void playMusic();
+
+    public static void print(MusicStyles[] music) {
+        if (music == null) {
+            System.out.println("Нет данных на вывод!");
+        } else {
+            for (MusicStyles musicStyle : music) {
+                musicStyle.playMusic();
+            }
+        }
+    }
 }
