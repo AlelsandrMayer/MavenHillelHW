@@ -13,5 +13,4 @@ public class Main {
         print(musicStyles);
         print(null);
     }
-
 }
