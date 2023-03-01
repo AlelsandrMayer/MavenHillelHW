@@ -25,19 +25,15 @@ public class MathArray {
         if (matrix == null) {
             System.out.print("(Матрица отсутствует)Квадратная ? - ");
             return false;
-
-        } else if (matrix.length == 0 || matrix[0].length == 0) {
-            System.out.print("(Матрица нулевая)Квадратная ? - ");
-            return false;
         } else {
             for (int[] arr : matrix) {
-                if (matrix.length != arr.length) {
+                if (arr == null || matrix.length != arr.length) {
                     System.out.print("Матрица квадратная ? - ");
                     return false;
                 }
             }
-            System.out.print("Матрица квадратная ? - ");
-            return true;
         }
+        System.out.print("Матрица квадратная ? - ");
+        return true;
     }
 }
