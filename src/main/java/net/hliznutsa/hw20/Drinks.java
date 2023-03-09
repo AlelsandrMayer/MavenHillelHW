@@ -1,6 +1,6 @@
 package net.hliznutsa.hw20;
 
-public enum DrinksMachine {
+public enum Drinks {
     COFFEE(34),
     TEA(15),
     LEMONADE(18),
@@ -10,7 +10,7 @@ public enum DrinksMachine {
 
     private final int PRICE;
 
-    DrinksMachine(int price) {
+    Drinks(int price) {
         this.PRICE = price;
     }
 
