@@ -1,9 +1,7 @@
 package net.hliznutsa.hw20;
 
-import static net.hliznutsa.hw20.MethodsDrink.systemInDrink;
-import static net.hliznutsa.hw20.MethodsDrink.wantMore;
 
-public class DrinkMachine {
+public class DrinkMachine extends MethodsDrink {
     private static int amountPurchases = 0;
     private static int countOfDrinks = 0;
 
@@ -46,7 +44,7 @@ public class DrinkMachine {
         } while (wantMore());
     }
 
-    public static void counterAndPrintChoice(Drinks choice) {
+    private static void counterAndPrintChoice(Drinks choice) {
         countOfDrinks++;
         amountPurchases += choice.getPrice();
         System.out.println("Вы выбрали " + choice);

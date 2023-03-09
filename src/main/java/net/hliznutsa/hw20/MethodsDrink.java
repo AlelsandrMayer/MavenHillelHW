@@ -3,7 +3,7 @@ package net.hliznutsa.hw20;
 import java.util.Scanner;
 
 public class MethodsDrink {
-    private static final String YES = "ДА";
+    private static final String YES = "YES";
 
     public static void printMachineMenu() {
         System.out.println("МЕНЮ: \n" + Drinks.COFFEE + " - цена: " + Drinks.COFFEE.getPrice());
@@ -21,7 +21,7 @@ public class MethodsDrink {
         System.out.println("\nСделайте выбор согласно названию в меню\n" + "Например Lemonade");
     }
 
-    public static Drinks systemInDrink() {
+    protected Drinks systemInDrink() {
         System.out.println("Ваш выбор: ");
 
         Scanner scanner = new Scanner(System.in);
@@ -30,9 +30,8 @@ public class MethodsDrink {
         return Drinks.valueOf(drinkScanner.toUpperCase());
     }
 
-
-    public static boolean wantMore() {
-        System.out.println("Желаете ещё что-то заказать? Напишите Да или Нет");
+    protected boolean wantMore() {
+        System.out.println("Желаете ещё что-то заказать? Напишите YES или NO");
 
         Scanner scanner = new Scanner(System.in);
         String yesOrNo = scanner.next();
