@@ -4,11 +4,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int count = 3;
-        User user = null;
-        Scanner scanner = new Scanner(System.in);
+        User user1 = createUser();
 
+        try {
+            System.out.println("Логин: " + user1.getLogin() + "  ,  " + "Пароль: " + user1.getPassword());
+        } catch (NullPointerException e) {
+            System.err.println("Пользователь не создан");
+        } finally {
+            System.out.println("Дякую, що скористались нашим сервісом");
+        }
+    }
+
+    public static User createUser() {
+        int count = 0;
         do {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Введите логин:");
             String login = scanner.next();
 
@@ -18,20 +28,14 @@ public class Main {
             System.out.println("Повторите ввод пароля:");
             String confirmPassword = scanner.next();
 
-            count--;
             try {
-                user = new User(login, password, confirmPassword);
-            } catch (WrongLoginException | WrongPasswordException | NullPointerException e) {
-                System.err.println(e.getMessage() + "\nОсталось " + count + " попыток");
-            }
-        } while (user == null && count > 0);
+                return new User(login, password, confirmPassword);
 
-        try {
-            System.out.println(user.getLOGIN() + "  ,  " + user.getPASSWORD());
-        } catch (NullPointerException e) {
-            System.err.println("Нет данных");
-        } finally {
-            System.out.println("Дякую, що скористались нашим сервісом");
-        }
+            } catch (WrongLoginException | WrongPasswordException e) {
+                count++;
+                System.err.println(e.getMessage() + "\nИспользовано " + count + "/3  попыток");
+            }
+        } while (count < 3);
+        return null;
     }
 }
