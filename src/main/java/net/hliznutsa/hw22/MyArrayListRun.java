@@ -7,7 +7,6 @@ public class MyArrayListRun {
         arr.add("2");
         arr.add("3");
         arr.add("4");
-        arr.add("5");
         arr.add("6");
         arr.add("7");
 
@@ -23,10 +22,13 @@ public class MyArrayListRun {
         System.out.println();
         arr.printAll();
         System.out.println("\n" + arr.get(5));
-        System.out.println(arr.get(6));
+        System.out.println(arr.get(-100));
 
         System.out.println("Size = " + arr.size());
 
-
+        MyList list = new MyArrayList(0);
+        list.add("test");
+        list.get(-42);
+        list.printAll();
     }
 }
