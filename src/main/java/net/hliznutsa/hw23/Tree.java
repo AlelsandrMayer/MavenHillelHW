@@ -19,11 +19,10 @@ public class Tree {
     }
 
     public boolean contains(int value) {
-        return containsNode(root, value) == value;
-
+        return containsNode(root, value) != null;
     }
 
-    private int containsNode(Node node, int value) {
+    private Integer containsNode(Node node, int value) {
         while (node != null) {
             if (node.key > value) {
                 node = node.left;
@@ -33,15 +32,15 @@ public class Tree {
                 return node.key;
             }
         }
-        return 0;
+        return null;
     }
 
-    public void deleteNode(int value) {
+    public boolean deleteNode(int value) {
         if (contains(value)) {
             deleteNode(root, value);
-            System.out.println("Элемент удалён");
+            return true;
         } else {
-            System.out.println("Элемент не найден");
+            return false;
         }
     }
 
@@ -78,13 +77,11 @@ public class Tree {
         return null;
     }
 
-
     private Node findMinElement(Node node) {
-        if (node.left == null) {
-            return node;
+        while (node.left != null) {
+            node = node.left;
         }
-
-        return findMinElement(node.left);
+        return node;
     }
 
     public void print() {
