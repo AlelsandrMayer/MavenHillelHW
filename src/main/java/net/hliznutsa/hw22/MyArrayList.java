@@ -27,21 +27,15 @@ public class MyArrayList implements MyList {
     @Override
     public void add(String value) {
         checkCapacity();
-        String[] newArray = new String[array.length];
-        newArray[0] = value;
-        System.arraycopy(array, 0, newArray, 1, array.length - 1);
-        array = newArray;
+        System.arraycopy(array, 0, array, 1, array.length - 1);
+        array[0] = value;
         size++;
     }
 
     @Override
     public void add(String value, int index) {
-        if (index < 0) {
-            System.err.println("ERROR: Индекс не может быть отрицательным!");
-            return;
-        } else if (index > size) {
-            System.err.println("ERROR: Индекс больше размера: " + size);
-            return;
+        if (index < 0 || index > size) {
+            throw new ArrayIndexOutOfBoundsException("Incorrect index");
         } else if (index == size) {
             addLast(value);
             return;
@@ -66,40 +60,42 @@ public class MyArrayList implements MyList {
     @Override
     public String get(int index) {
         if (index < 0 || index >= size) {
-            return "ERROR: Не верный индекс. Максимальный индекс: " + (size - 1);
+            throw new ArrayIndexOutOfBoundsException("Incorrect index");
         }
         return array[index];
     }
 
     @Override
     public String remove(int index) {
-        if (index < 0 || index > size) {
-            return "ERROR: Не верный индекс. Максимальный индекс: " + size;
+        if (index < 0 || index > size || size == 0) {
+            throw new ArrayIndexOutOfBoundsException("Incorrect index");
         } else if (size == index) {
-            removeLast();
-            return "Удалён элемент под индексом: " + index;
+            return removeLast();
         }
+        String result = array[index];
         System.arraycopy(array, index + 1, array, index, array.length - index - 1);
-        removeLast();
-        return "Удалён элемент под индексом: " + index;
+        array[size - 1] = null;
+        size--;
+        return result;
     }
 
     @Override
     public String removeLast() {
+        String result = array[size - 1];
         array[size - 1] = null;
         size--;
-        return "Удалён элемент , под индексом: " + (size);
+        return result;
     }
 
     @Override
     public String remove() {
-        String[] newArray = new String[array.length];
-        String element = array[0];
-
-        System.arraycopy(array, 1, newArray, 0, array.length - 1);
-        array = newArray;
+        if (size == 0) {
+            throw new ArrayIndexOutOfBoundsException("MyArrayList size = " + size);
+        }
+        String result = array[0];
+        System.arraycopy(array, 1, array, 0, array.length - 1);
         size--;
-        return "Удалён элемент: " + element + " , под индексом: " + 0;
+        return result;
     }
 
     @Override
